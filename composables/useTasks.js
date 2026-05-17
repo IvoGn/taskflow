@@ -45,12 +45,24 @@ export const useTasks = () => {
       tasks.value = JSON.parse(storedTasks)
     }
   }
+  const updateTask = (id, title) => {
+    const task = tasks.value.find(
+        task => task.id === id
+    )
+
+    if (task) {
+        task.title = title
+    }
+
+    saveTasks()
+    }
 
   return {
     tasks,
     addTask,
     removeTask,
     toggleTask,
+    updateTask,
     loadTasks
   }
 }

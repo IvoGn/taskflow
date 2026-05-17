@@ -16,6 +16,7 @@ const {
   addTask,
   removeTask,
   toggleTask,
+  updateTask,
   loadTasks
 } = useTasks()
 
@@ -121,6 +122,7 @@ const filteredTasks = computed(() => {
         :task="task"
         @toggle="toggleTask"
         @delete="removeTask"
+        @update="updateTask"
       />
     </div>
   </div>
