@@ -3,9 +3,13 @@ definePageMeta({
   middleware: 'auth'
 })
 
+const route = useRoute()
+
 const newTask = ref('')
 
-const currentFilter = ref('all')
+const currentFilter = ref(
+  route.query.filter || 'all'
+)
 
 const {
   tasks,

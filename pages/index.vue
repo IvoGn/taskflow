@@ -3,6 +3,8 @@ definePageMeta({
   middleware: 'auth'
 })
 
+const router = useRouter()
+
 const { tasks, loadTasks } = useTasks()
 
 onMounted(() => {
@@ -39,7 +41,10 @@ const openTasks = computed(() => {
     </div>
 
     <div class="grid md:grid-cols-3 gap-6">
-      <div class="bg-white p-6 rounded-2xl shadow">
+      <button
+        @click="router.push('/tasks?filter=all')"
+        class="bg-white p-6 rounded-2xl shadow text-left hover:shadow-lg transition"
+      >
         <p class="text-gray-500">
           Total Tasks
         </p>
@@ -47,9 +52,12 @@ const openTasks = computed(() => {
         <h3 class="text-4xl font-bold mt-2">
           {{ totalTasks }}
         </h3>
-      </div>
+      </button>
 
-      <div class="bg-white p-6 rounded-2xl shadow">
+      <button
+        @click="router.push('/tasks?filter=open')"
+        class="bg-white p-6 rounded-2xl shadow text-left hover:shadow-lg transition"
+      >
         <p class="text-gray-500">
           Open Tasks
         </p>
@@ -57,9 +65,12 @@ const openTasks = computed(() => {
         <h3 class="text-4xl font-bold mt-2">
           {{ openTasks }}
         </h3>
-      </div>
+      </button>
 
-      <div class="bg-white p-6 rounded-2xl shadow">
+      <button
+        @click="router.push('/tasks?filter=completed')"
+        class="bg-white p-6 rounded-2xl shadow text-left hover:shadow-lg transition"
+      >
         <p class="text-gray-500">
           Completed Tasks
         </p>
@@ -67,7 +78,7 @@ const openTasks = computed(() => {
         <h3 class="text-4xl font-bold mt-2">
           {{ completedTasks }}
         </h3>
-      </div>
+      </button>
     </div>
   </div>
 </template>
