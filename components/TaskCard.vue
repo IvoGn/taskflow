@@ -41,9 +41,9 @@ const cancelEdit = () => {
 
 <template>
   <div
-    class="bg-white rounded-2xl shadow p-4 flex justify-between items-center"
+    class="bg-white rounded-2xl shadow p-4 flex justify-between items-center gap-4"
   >
-    <div class="flex items-center gap-3 flex-1">
+    <div class="flex-1 min-w-0">
       <template v-if="isEditing">
         <input
           v-model="editedTitle"
@@ -53,18 +53,20 @@ const cancelEdit = () => {
       </template>
 
       <template v-else>
-        <h3
-          class="font-semibold text-lg"
-          :class="task.completed ? 'line-through text-gray-400' : ''"
-        >
-          {{ task.title }}
-        </h3>
+        <div class="flex flex-col sm:flex-row sm:items-center gap-2">
+          <h3
+            class="font-semibold text-lg break-words overflow-hidden"
+            :class="task.completed ? 'line-through text-gray-400' : ''"
+          >
+            {{ task.title }}
+          </h3>
 
-        <StatusBadge :completed="task.completed" />
+          <StatusBadge :completed="task.completed" />
+        </div>
       </template>
     </div>
 
-    <div class="flex gap-2 ml-4">
+    <div class="flex gap-2 shrink-0">
       <template v-if="isEditing">
         <button
           @click="saveEdit"
@@ -74,17 +76,17 @@ const cancelEdit = () => {
         </button>
 
         <button
-          @click="emit('delete', task.id)"
-          class="bg-red-500 text-white px-4 py-2 rounded-xl"
-        >
-          Delete
-        </button>
-
-        <button
           @click="cancelEdit"
           class="bg-gray-400 text-white px-4 py-2 rounded-xl"
         >
           Cancel
+        </button>
+
+        <button
+          @click="emit('delete', task.id)"
+          class="bg-red-500 text-white px-4 py-2 rounded-xl"
+        >
+          Delete
         </button>
       </template>
 
