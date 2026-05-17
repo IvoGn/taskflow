@@ -1,75 +1,55 @@
-# Nuxt Minimal Starter
+# TaskFlow
 
-Look at the [Nuxt documentation](https://nuxt.com/docs/getting-started/introduction) to learn more.
+TaskFlow is a lightweight Nuxt 4 task management app built with Vue 3 and Tailwind CSS. It provides a simple dashboard for tracking tasks, adding new items, editing titles, marking tasks complete, and filtering open vs completed work.
 
-## Setup
+## Project Overview
 
-Make sure to install dependencies:
+- **Authentication flow**: simple sign-in page using client-side auth state stored in `localStorage`
+- **Task management**: add, edit, complete, and delete tasks
+- **Persistent storage**: tasks are saved in `localStorage` so they remain after refresh
+- **Dashboard**: quick overview of total, open, and completed task counts
+- **Filtering**: view all tasks or filter by open/completed status
+
+## Key Pages
+
+- `pages/login.vue` — login screen for users to sign in
+- `pages/index.vue` — dashboard with task summaries and quick navigation
+- `pages/tasks.vue` — task list view with add, edit, complete, delete, and filter controls
+
+## Technology Stack
+
+- Nuxt 4
+- Vue 3
+- Tailwind CSS
+- Client-side state and storage with `useState` and `localStorage`
+
+## Getting Started
+
+Install dependencies:
 
 ```bash
-# npm
 npm install
-
-# pnpm
-pnpm install
-
-# yarn
-yarn install
-
-# bun
-bun install
 ```
 
-## Development Server
-
-Start the development server on `http://localhost:3000`:
+Run the development server:
 
 ```bash
-# npm
 npm run dev
-
-# pnpm
-pnpm dev
-
-# yarn
-yarn dev
-
-# bun
-bun run dev
 ```
 
-## Production
-
-Build the application for production:
+Build for production:
 
 ```bash
-# npm
 npm run build
-
-# pnpm
-pnpm build
-
-# yarn
-yarn build
-
-# bun
-bun run build
 ```
 
-Locally preview production build:
+Preview the production build locally:
 
 ```bash
-# npm
 npm run preview
-
-# pnpm
-pnpm preview
-
-# yarn
-yarn preview
-
-# bun
-bun run preview
 ```
 
-Check out the [deployment documentation](https://nuxt.com/docs/getting-started/deployment) for more information.
+## Notes
+
+- This project is designed as a frontend demo; authentication is handled locally and does not connect to a backend.
+- Task persistence is browser-based through `localStorage`, so tasks are preserved per browser session.
