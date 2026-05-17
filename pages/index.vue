@@ -30,14 +30,14 @@ const openTasks = computed(() => {
       </h2>
 
       <p class="text-gray-500 mt-2">
-        Übersicht über deine Aufgaben
+        Overview of your tasks
       </p>
     </div>
 
     <div class="grid md:grid-cols-3 gap-6">
       <div class="bg-white p-6 rounded-2xl shadow">
         <p class="text-gray-500">
-          Gesamt
+          Total Tasks
         </p>
 
         <h3 class="text-4xl font-bold mt-2">
@@ -47,7 +47,7 @@ const openTasks = computed(() => {
 
       <div class="bg-white p-6 rounded-2xl shadow">
         <p class="text-gray-500">
-          Offen
+          Open Tasks
         </p>
 
         <h3 class="text-4xl font-bold mt-2">
@@ -57,7 +57,7 @@ const openTasks = computed(() => {
 
       <div class="bg-white p-6 rounded-2xl shadow">
         <p class="text-gray-500">
-          Erledigt
+          Completed Tasks
         </p>
 
         <h3 class="text-4xl font-bold mt-2">

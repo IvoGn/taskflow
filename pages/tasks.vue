@@ -31,7 +31,7 @@ const handleAddTask = () => {
         </h2>
 
         <p class="text-gray-500 mt-2">
-          Verwalte deine Aufgaben
+          Manage your tasks
         </p>
       </div>
     </div>
@@ -41,7 +41,7 @@ const handleAddTask = () => {
         <input
           v-model="newTask"
           type="text"
-          placeholder="Neue Aufgabe..."
+          placeholder="New task..."
           class="flex-1 border border-gray-300 rounded-xl px-4 py-2"
         >
 
@@ -49,7 +49,7 @@ const handleAddTask = () => {
           @click="handleAddTask"
           class="bg-black text-white px-5 py-2 rounded-xl"
         >
-          Hinzufügen
+          Add Task
         </button>
       </div>
     </div>
