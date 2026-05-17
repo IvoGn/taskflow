@@ -1,4 +1,8 @@
 <script setup>
+definePageMeta({
+  middleware: 'auth'
+})
+
 const newTask = ref('')
 
 const currentFilter = ref('all')

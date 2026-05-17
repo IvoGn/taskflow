@@ -1,3 +1,13 @@
+<script setup>
+const { logout } = useAuth()
+
+const handleLogout = () => {
+  logout()
+
+  navigateTo('/login')
+}
+</script>
+
 <template>
   <div class="min-h-screen bg-gray-100">
     <header class="bg-white shadow">
@@ -20,6 +30,13 @@
           >
             Tasks
           </NuxtLink>
+
+          <button
+            @click="handleLogout"
+            class="bg-black text-white px-4 py-2 rounded-xl hover:bg-gray-800 transition"
+            >
+            Logout
+            </button>
         </nav>
       </div>
     </header>
