@@ -13,16 +13,18 @@ const emit = defineEmits([
 </script>
 
 <template>
-  <div
-    class="bg-white rounded-2xl shadow p-4 flex justify-between items-center"
-  >
+  <div class="bg-white rounded-2xl shadow p-4 flex justify-between items-center">
     <div>
-      <h3
-        class="font-semibold text-lg"
-        :class="task.completed ? 'line-through text-gray-400' : ''"
-      >
-        {{ task.title }}
-      </h3>
+        <div class="flex items-center gap-3">
+          <h3
+          class="font-semibold text-lg"
+          :class="task.completed ? 'line-through text-gray-400' : ''"
+          >
+          {{ task.title }}
+          </h3>
+
+          <StatusBadge :completed="task.completed" />
+      </div>
     </div>
 
     <div class="flex gap-2">

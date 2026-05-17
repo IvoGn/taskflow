@@ -1,6 +1,8 @@
 <script setup>
 const newTask = ref('')
 
+const currentFilter = ref('all')
+
 const {
   tasks,
   addTask,
@@ -20,6 +22,18 @@ const handleAddTask = () => {
 
   newTask.value = ''
 }
+
+const filteredTasks = computed(() => {
+  if (currentFilter.value === 'open') {
+    return tasks.value.filter(task => !task.completed)
+  }
+
+  if (currentFilter.value === 'completed') {
+    return tasks.value.filter(task => task.completed)
+  }
+
+  return tasks.value
+})
 </script>
 
 <template>
@@ -47,16 +61,54 @@ const handleAddTask = () => {
 
         <button
           @click="handleAddTask"
-          class="bg-black text-white px-5 py-2 rounded-xl"
+          class="bg-black text-white px-5 py-2 rounded-xl hover:bg-gray-800 transition"
         >
           Add Task
         </button>
       </div>
     </div>
 
+    <div class="flex gap-3 mb-6">
+      <button
+        @click="currentFilter = 'all'"
+        class="px-4 py-2 rounded-xl transition"
+        :class="
+          currentFilter === 'all'
+            ? 'bg-black text-white'
+            : 'bg-white shadow'
+        "
+      >
+        All
+      </button>
+
+      <button
+        @click="currentFilter = 'open'"
+        class="px-4 py-2 rounded-xl transition"
+        :class="
+          currentFilter === 'open'
+            ? 'bg-black text-white'
+            : 'bg-white shadow'
+        "
+      >
+        Open
+      </button>
+
+      <button
+        @click="currentFilter = 'completed'"
+        class="px-4 py-2 rounded-xl transition"
+        :class="
+          currentFilter === 'completed'
+            ? 'bg-black text-white'
+            : 'bg-white shadow'
+        "
+      >
+        Completed
+      </button>
+    </div>
+
     <div class="space-y-4">
       <TaskCard
-        v-for="task in tasks"
+        v-for="task in filteredTasks"
         :key="task.id"
         :task="task"
         @toggle="toggleTask"
