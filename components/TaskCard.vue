@@ -74,6 +74,13 @@ const cancelEdit = () => {
         </button>
 
         <button
+          @click="emit('delete', task.id)"
+          class="bg-red-500 text-white px-4 py-2 rounded-xl"
+        >
+          Delete
+        </button>
+
+        <button
           @click="cancelEdit"
           class="bg-gray-400 text-white px-4 py-2 rounded-xl"
         >
@@ -83,13 +90,6 @@ const cancelEdit = () => {
 
       <template v-else>
         <button
-          @click="startEditing"
-          class="bg-blue-500 text-white px-4 py-2 rounded-xl"
-        >
-          Edit
-        </button>
-
-        <button
           @click="emit('toggle', task.id)"
           class="bg-green-500 text-white px-4 py-2 rounded-xl"
         >
@@ -97,10 +97,10 @@ const cancelEdit = () => {
         </button>
 
         <button
-          @click="emit('delete', task.id)"
-          class="bg-red-500 text-white px-4 py-2 rounded-xl"
+          @click="startEditing"
+          class="bg-blue-500 text-white px-4 py-2 rounded-xl"
         >
-          Delete
+          Edit
         </button>
       </template>
     </div>
