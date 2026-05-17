@@ -1,3 +1,27 @@
+<script setup>
+const { tasks, loadTasks } = useTasks()
+
+onMounted(() => {
+  loadTasks()
+})
+
+const totalTasks = computed(() => {
+  return tasks.value.length
+})
+
+const completedTasks = computed(() => {
+  return tasks.value.filter(
+    task => task.completed
+  ).length
+})
+
+const openTasks = computed(() => {
+  return tasks.value.filter(
+    task => !task.completed
+  ).length
+})
+</script>
+
 <template>
   <div>
     <div class="mb-8">
@@ -17,7 +41,7 @@
         </p>
 
         <h3 class="text-4xl font-bold mt-2">
-          12
+          {{ totalTasks }}
         </h3>
       </div>
 
@@ -27,7 +51,7 @@
         </p>
 
         <h3 class="text-4xl font-bold mt-2">
-          5
+          {{ openTasks }}
         </h3>
       </div>
 
@@ -37,7 +61,7 @@
         </p>
 
         <h3 class="text-4xl font-bold mt-2">
-          7
+          {{ completedTasks }}
         </h3>
       </div>
     </div>
