@@ -19,6 +19,7 @@ const editedTitle = ref(props.task.title)
 const editedDueDate = ref(props.task.dueDate)
 
 const isOverdue = computed(() => {
+  // Check if task is past due. Don't count completed tasks as overdue.
   if (!props.task.dueDate || props.task.completed) return false
   const dueDate = new Date(props.task.dueDate)
   const today = new Date()
@@ -26,6 +27,7 @@ const isOverdue = computed(() => {
   return dueDate < today
 })
 
+// Format date for display as "Jan 15, 2026"
 const formattedDueDate = computed(() => {
   if (!props.task.dueDate) return null
   return new Date(props.task.dueDate).toLocaleDateString('en-US', {

@@ -1,3 +1,6 @@
+// Route middleware to protect authenticated pages
+// Redirects unauthenticated users to /login
+
 export default defineNuxtRouteMiddleware(() => {
   const { isAuthenticated } = useAuth()
 

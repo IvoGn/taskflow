@@ -1,3 +1,7 @@
+// Login page for unauthenticated users
+// Redirects to dashboard if already authenticated
+// Validates email and password before calling login()
+
 <script setup>
 const email = ref('')
 const password = ref('')

@@ -1,4 +1,8 @@
 <script setup>
+// Reusable confirmation modal for destructive actions
+// Props: isOpen (boolean), taskTitle (string for confirmation text)
+// Emits: 'confirm' and 'cancel' events to parent
+
 const props = defineProps({
   isOpen: {
     type: Boolean,

@@ -1,4 +1,8 @@
 <script setup>
+// Dashboard page showing task statistics overview
+// Displays total tasks, open tasks, and completed tasks
+// Each stat card is clickable and navigates to the tasks page with relevant filter
+
 definePageMeta({
   middleware: 'auth'
 })

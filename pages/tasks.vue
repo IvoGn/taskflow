@@ -35,6 +35,7 @@ const handleAddTask = () => {
 }
 
 const filteredTasks = computed(() => {
+  // First filter tasks by status: all/open (not completed)/completed
   let filtered = tasks.value
 
   if (currentFilter.value === 'open') {
@@ -43,6 +44,8 @@ const filteredTasks = computed(() => {
     filtered = tasks.value.filter(task => task.completed)
   }
 
+  // Sort tasks by due date: tasks with dates appear first (nearest date first),
+  // then tasks without dates. This ensures urgent tasks appear at the top.
   return filtered.sort((a, b) => {
     // Tasks with due dates come first, sorted by nearest date
     if (a.dueDate && b.dueDate) {

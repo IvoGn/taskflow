@@ -1,4 +1,8 @@
 <script setup>
+// Main layout component for authenticated pages
+// Provides header with navigation and logout functionality
+// Uses loadAuth() on mount to verify user is authenticated
+
 const route = useRoute()
 
 const {

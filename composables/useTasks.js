@@ -1,3 +1,7 @@
+// Task composable for managing task state and persistence
+// Each task object contains: id, title, dueDate (ISO string or null), completed
+// Tasks are persisted to localStorage for client-side storage across sessions
+
 export const useTasks = () => {
   const tasks = useState('tasks', () => [])
 
@@ -32,6 +36,7 @@ export const useTasks = () => {
     saveTasks()
   }
 
+  // Persist tasks to localStorage to maintain state across sessions
   const saveTasks = () => {
     localStorage.setItem(
       'tasks',
@@ -39,6 +44,7 @@ export const useTasks = () => {
     )
   }
 
+  // Retrieve persisted tasks from localStorage on app initialization
   const loadTasks = () => {
     const storedTasks = localStorage.getItem('tasks')
 
