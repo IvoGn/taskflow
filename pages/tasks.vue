@@ -136,14 +136,23 @@ const filteredTasks = computed(() => {
     </div>
 
     <div class="space-y-4">
-      <TaskCard
-        v-for="task in filteredTasks"
-        :key="task.id"
-        :task="task"
-        @toggle="toggleTask"
-        @delete="removeTask"
-        @update="updateTask"
-      />
+      <template v-if="filteredTasks.length > 0">
+        <TaskCard
+          v-for="task in filteredTasks"
+          :key="task.id"
+          :task="task"
+          @toggle="toggleTask"
+          @delete="removeTask"
+          @update="updateTask"
+        />
+      </template>
+
+      <template v-else>
+        <div class="flex flex-col items-center justify-center py-16 text-center">
+          <h3 class="text-2xl font-bold text-gray-400 mb-2">No tasks found</h3>
+          <p class="text-gray-500">Create your first task.</p>
+        </div>
+      </template>
     </div>
   </div>
 </template>
