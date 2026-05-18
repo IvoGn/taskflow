@@ -35,15 +35,27 @@ const handleAddTask = () => {
 }
 
 const filteredTasks = computed(() => {
+  let filtered = tasks.value
+
   if (currentFilter.value === 'open') {
-    return tasks.value.filter(task => !task.completed)
+    filtered = tasks.value.filter(task => !task.completed)
+  } else if (currentFilter.value === 'completed') {
+    filtered = tasks.value.filter(task => task.completed)
   }
 
-  if (currentFilter.value === 'completed') {
-    return tasks.value.filter(task => task.completed)
-  }
-
-  return tasks.value
+  return filtered.sort((a, b) => {
+    // Tasks with due dates come first, sorted by nearest date
+    if (a.dueDate && b.dueDate) {
+      return new Date(a.dueDate) - new Date(b.dueDate)
+    }
+    
+    // Tasks with due dates come before tasks without
+    if (a.dueDate && !b.dueDate) return -1
+    if (!a.dueDate && b.dueDate) return 1
+    
+    // Tasks without due dates maintain original order
+    return 0
+  })
 })
 </script>
 
