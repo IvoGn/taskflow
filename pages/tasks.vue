@@ -6,6 +6,7 @@ definePageMeta({
 const route = useRoute()
 
 const newTask = ref('')
+const newTaskDueDate = ref('')
 
 const currentFilter = ref(
   route.query.filter || 'all'
@@ -27,9 +28,10 @@ onMounted(() => {
 const handleAddTask = () => {
   if (!newTask.value.trim()) return
 
-  addTask(newTask.value)
+  addTask(newTask.value, newTaskDueDate.value || null)
 
   newTask.value = ''
+  newTaskDueDate.value = ''
 }
 
 const filteredTasks = computed(() => {
@@ -66,6 +68,12 @@ const filteredTasks = computed(() => {
           type="text"
           placeholder="New task..."
           class="flex-1 border border-gray-300 rounded-xl px-4 py-2"
+        >
+
+        <input
+          v-model="newTaskDueDate"
+          type="date"
+          class="border border-gray-300 rounded-xl px-4 py-2"
         >
 
         <button

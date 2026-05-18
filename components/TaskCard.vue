@@ -15,6 +15,24 @@ const emit = defineEmits([
 const isEditing = ref(false)
 
 const editedTitle = ref(props.task.title)
+const editedDueDate = ref(props.task.dueDate)
+
+const isOverdue = computed(() => {
+  if (!props.task.dueDate || props.task.completed) return false
+  const dueDate = new Date(props.task.dueDate)
+  const today = new Date()
+  today.setHours(0, 0, 0, 0)
+  return dueDate < today
+})
+
+const formattedDueDate = computed(() => {
+  if (!props.task.dueDate) return null
+  return new Date(props.task.dueDate).toLocaleDateString('en-US', {
+    year: 'numeric',
+    month: 'short',
+    day: 'numeric'
+  })
+})
 
 const startEditing = () => {
   isEditing.value = true
@@ -26,7 +44,8 @@ const saveEdit = () => {
   emit(
     'update',
     props.task.id,
-    editedTitle.value
+    editedTitle.value,
+    editedDueDate.value || null
   )
 
   isEditing.value = false
@@ -34,6 +53,7 @@ const saveEdit = () => {
 
 const cancelEdit = () => {
   editedTitle.value = props.task.title
+  editedDueDate.value = props.task.dueDate
 
   isEditing.value = false
 }
@@ -45,11 +65,18 @@ const cancelEdit = () => {
   >
     <div class="flex-1 min-w-0">
       <template v-if="isEditing">
-        <input
-          v-model="editedTitle"
-          type="text"
-          class="border border-gray-300 rounded-xl px-3 py-2 w-full"
-        >
+        <div class="flex flex-col gap-2">
+          <input
+            v-model="editedTitle"
+            type="text"
+            class="border border-gray-300 rounded-xl px-3 py-2 w-full"
+          >
+          <input
+            v-model="editedDueDate"
+            type="date"
+            class="border border-gray-300 rounded-xl px-3 py-2 w-full"
+          >
+        </div>
       </template>
 
       <template v-else>
@@ -62,6 +89,14 @@ const cancelEdit = () => {
           </h3>
 
           <StatusBadge :completed="task.completed" />
+
+          <div v-if="isOverdue" class="bg-red-500 text-white px-3 py-1 rounded-full text-sm font-semibold">
+            Overdue
+          </div>
+
+          <div v-if="formattedDueDate" class="text-gray-500 text-sm">
+            {{ formattedDueDate }}
+          </div>
         </div>
       </template>
     </div>

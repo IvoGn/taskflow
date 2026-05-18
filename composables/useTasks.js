@@ -1,10 +1,11 @@
 export const useTasks = () => {
   const tasks = useState('tasks', () => [])
 
-  const addTask = (title) => {
+  const addTask = (title, dueDate = null) => {
     tasks.value.push({
       id: Date.now(),
       title,
+      dueDate: dueDate || null,
       completed: false
     })
 
@@ -45,13 +46,16 @@ export const useTasks = () => {
       tasks.value = JSON.parse(storedTasks)
     }
   }
-  const updateTask = (id, title) => {
+  const updateTask = (id, title, dueDate = undefined) => {
     const task = tasks.value.find(
         task => task.id === id
     )
 
     if (task) {
         task.title = title
+        if (dueDate !== undefined) {
+          task.dueDate = dueDate
+        }
     }
 
     saveTasks()
