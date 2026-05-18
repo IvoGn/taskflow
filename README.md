@@ -2,6 +2,9 @@
 
 TaskFlow is a lightweight Nuxt 4 task management app built with Vue 3 and Tailwind CSS. It provides a simple dashboard for tracking tasks, adding new items, editing titles, marking tasks complete, and filtering open vs completed work.
 
+## Demo
+Live Demo: https://taskflow-ivogn.vercel.app
+
 ## Project Overview
 
 - **Authentication flow**: simple sign-in page using client-side auth state stored in `localStorage`
