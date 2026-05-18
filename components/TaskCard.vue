@@ -13,6 +13,7 @@ const emit = defineEmits([
 ])
 
 const isEditing = ref(false)
+const showDeleteConfirm = ref(false)
 
 const editedTitle = ref(props.task.title)
 const editedDueDate = ref(props.task.dueDate)
@@ -56,6 +57,15 @@ const cancelEdit = () => {
   editedDueDate.value = props.task.dueDate
 
   isEditing.value = false
+}
+
+const confirmDelete = () => {
+  emit('delete', props.task.id)
+  showDeleteConfirm.value = false
+}
+
+const cancelDelete = () => {
+  showDeleteConfirm.value = false
 }
 </script>
 
@@ -118,7 +128,7 @@ const cancelEdit = () => {
         </button>
 
         <button
-          @click="emit('delete', task.id)"
+          @click="showDeleteConfirm = true"
           class="bg-red-500 text-white px-4 py-2 rounded-xl"
         >
           Delete
@@ -142,4 +152,11 @@ const cancelEdit = () => {
       </template>
     </div>
   </div>
+
+  <DeleteConfirmModal
+    :isOpen="showDeleteConfirm"
+    :taskTitle="task.title"
+    @confirm="confirmDelete"
+    @cancel="cancelDelete"
+  />
 </template>
