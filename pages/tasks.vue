@@ -77,7 +77,7 @@ const filteredTasks = computed(() => {
     </div>
 
     <div class="bg-white p-4 rounded-2xl shadow mb-6">
-      <div class="flex gap-3">
+      <div class="flex flex-col md:flex-row gap-3">
         <input
           v-model="newTask"
           type="text"
@@ -88,12 +88,12 @@ const filteredTasks = computed(() => {
         <input
           v-model="newTaskDueDate"
           type="date"
-          class="border border-gray-300 rounded-xl px-4 py-2"
+          class="border border-gray-300 rounded-xl px-4 py-2 md:flex-shrink-0"
         >
 
         <button
           @click="handleAddTask"
-          class="bg-black text-white px-5 py-2 rounded-xl hover:bg-gray-800 transition"
+          class="bg-black text-white px-5 py-2 rounded-xl hover:bg-gray-800 transition md:flex-shrink-0"
         >
           Add Task
         </button>

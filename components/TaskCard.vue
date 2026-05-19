@@ -73,7 +73,7 @@ const cancelDelete = () => {
 
 <template>
   <div
-    class="bg-white rounded-2xl shadow p-4 flex justify-between items-center gap-4"
+    class="bg-white rounded-2xl shadow p-4 flex flex-col md:flex-row md:justify-between md:items-center gap-4"
   >
     <div class="flex-1 min-w-0">
       <template v-if="isEditing">
@@ -113,7 +113,7 @@ const cancelDelete = () => {
       </template>
     </div>
 
-    <div class="flex gap-2 shrink-0">
+    <div class="flex flex-col sm:flex-row gap-2 md:shrink-0">
       <template v-if="isEditing">
         <button
           @click="saveEdit"
